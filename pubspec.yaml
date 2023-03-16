@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   # architecture
-  async_redux: ^19.0.0
+  async_redux: ^18.0.0
   dio: ^5.0.2
 
   # builder
