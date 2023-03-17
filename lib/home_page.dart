@@ -8,9 +8,11 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          //TODO: will be placed in constant later
           title: const Text('Home Page'),
         ),
         body: const Center(
+          //TODO: will be placed in constant later
           child: Text('This is Home Page'),
         ),
       ),
