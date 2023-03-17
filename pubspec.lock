@@ -37,10 +37,10 @@ packages:
     dependency: "direct main"
     description:
       name: async_redux
-      sha256: "70d752c5d8f166d6b870e84dd7366857b6346c39867d03fd65817d2686976e85"
+      sha256: de3744310b6d5c8bd3c608b9ebe507f43fb653d7e4f7deef166bf438af95caf3
       url: "https://pub.dev"
     source: hosted
-    version: "19.0.1"
+    version: "18.0.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -205,10 +205,10 @@ packages:
     dependency: transitive
     description:
       name: fast_immutable_collections
-      sha256: "60d68b272a33f919da05cd5f6dddcc69f62ace6a81b29f87a23b54a9126c971e"
+      sha256: affdcd944170e14a31cc564f9ef19b67480ce110851a8ec4294f5dd36be30fbc
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "8.2.0"
   ffi:
     dependency: transitive
     description:
