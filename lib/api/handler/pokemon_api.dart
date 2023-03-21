@@ -1,5 +1,6 @@
 import 'package:pokedex_async_redux/api/model/api_client.dart';
 import 'package:pokedex_async_redux/api/model/pokemon.dart';
+import 'package:pokedex_async_redux/api/model/pokemon_details.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -21,5 +22,11 @@ class PokemonApi {
     return await apiClient.dio.getUri(uri).then((response) {
       return response.data['results'].map<Pokemon>((dynamic data) => Pokemon.fromJson(data as Json)).toList();
     });
+  }
+
+  Future<PokemonDetails> getPokemonDetails({required String index}) async {
+    final uri = baseUri.replace(path: '${baseUri.path}/pokemon/$index');
+    final response = await apiClient.dio.getUri(uri);
+    return PokemonDetails.fromJson(response.data);
   }
 }
