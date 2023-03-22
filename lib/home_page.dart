@@ -7,9 +7,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Todo: Will be removed later
     StoreProvider.dispatch(context, GetPokemonsAction());
 
-    StoreProvider.dispatch(context, GetPokemonDetailsAction());
+    //Todo: Will be removed later
+    StoreProvider.dispatch(context, GetPokemonDetailsAction('charizard'));
 
     return MaterialApp(
       home: Scaffold(
