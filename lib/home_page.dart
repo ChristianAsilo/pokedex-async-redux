@@ -9,6 +9,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     StoreProvider.dispatch(context, GetPokemonsAction());
 
+    StoreProvider.dispatch(context, GetPokemonDetailsAction());
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
