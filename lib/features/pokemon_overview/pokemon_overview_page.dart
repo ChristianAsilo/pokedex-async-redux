@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_async_redux/api/model/pokemon.dart';
 import 'package:pokedex_async_redux/utils/constants.dart';
+import 'package:pokedex_async_redux/widget/pokemon_card.dart';
 
 class PokemonOverviewPage extends StatelessWidget {
   const PokemonOverviewPage({
-    Key? key,
     required this.pokemons,
+    Key? key,
   }) : super(key: key);
 
   final List<Pokemon> pokemons;
@@ -19,27 +20,13 @@ class PokemonOverviewPage extends StatelessWidget {
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: gridCount),
           itemCount: pokemons.length,
-          itemBuilder: (context, index) {
+          itemBuilder: (_, index) {
             final pokemon = pokemons[index];
-            final pokemonIndex = index + defaultOne;
-            return Card(
-              child: Padding(
-                padding: cardPadding,
-                child: Column(
-                  crossAxisAlignment: crossAlignmentCenter,
-                  children: [
-                    Text(
-                      pokemon.name,
-                      style: textSize,
-                    ),
-                    Expanded(
-                      child: Image.network(
-                        '$imageLink$pokemonIndex.png',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            final pokemonId = pokemon.url.split('/')[6];
+            final pokemonFinalUrl = imageLink.replaceFirst(indexString, pokemonId);
+            return PokemonCard(
+              pokemonName: pokemon.name,
+              pokemonImage: pokemonFinalUrl,
             );
           },
         ),
