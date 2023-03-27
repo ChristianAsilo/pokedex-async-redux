@@ -22,7 +22,7 @@ class GetPokemonsAction extends LoadingAction {
 
 ///Getting of pokemon details from pokemon api
 class GetPokemonDetailsAction extends ReduxAction<AppState> {
-  GetPokemonDetailsAction(this.pokemonName);
+  GetPokemonDetailsAction({required this.pokemonName});
 
   final String pokemonName;
 

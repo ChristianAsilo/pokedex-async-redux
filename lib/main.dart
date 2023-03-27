@@ -13,7 +13,7 @@ void main() {
   runApp(
     StoreProvider(
       store: store,
-      child: const PokemonOverviewConnector(),
+      child: const MaterialApp(home: PokemonOverviewConnector()),
     ),
   );
 }

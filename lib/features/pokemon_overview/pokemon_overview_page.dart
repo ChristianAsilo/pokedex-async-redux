@@ -14,28 +14,22 @@ class PokemonOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text(appbarTitle)),
-        body: Builder(
-          builder: (BuildContext context) {
-            return pokemons.when(
-              (data) => GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                itemCount: data.length,
-                itemBuilder: (_, index) {
-                  final pokemon = data[index];
-                  return PokemonCard(pokemon: pokemon);
-                },
-              ),
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (errorMessage) {
-                WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackbar(context, errorMessage));
-                return const Center(child: Text(noPokemonAvailable));
-              },
-            );
+    return Scaffold(
+      appBar: AppBar(title: const Text(appbarTitle)),
+      body: pokemons.when(
+        (data) => GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemCount: data.length,
+          itemBuilder: (_, index) {
+            final pokemon = data[index];
+            return PokemonCard(pokemon: pokemon);
           },
         ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (errorMessage) {
+          WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackbar(context, errorMessage));
+          return const Center(child: Text(noPokemonAvailable));
+        },
       ),
     );
   }
