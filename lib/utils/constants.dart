@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 const offset = '0';
 const limit = '151';
 
@@ -13,4 +11,4 @@ const appbarTitle = 'Pokedex';
 //Pokemon Overview VM
 const errorMessage = 'Something went wrong!';
 const noPokemonAvailable = 'No pokemons available';
-final key = GlobalKey<ScaffoldMessengerState>();
+const emptyString = '';

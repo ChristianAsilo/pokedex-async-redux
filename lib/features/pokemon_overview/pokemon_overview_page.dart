@@ -14,34 +14,37 @@ class PokemonOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _showErrorMessageSnackbar(String? errorMessage) {
-      final SnackBar snackBar = SnackBar(
-        content: Text(errorMessage!),
-        duration: const Duration(seconds: 5),
-      );
-      key.currentState?.showSnackBar(snackBar);
-    }
-
     return MaterialApp(
-        scaffoldMessengerKey: key,
-        home: Scaffold(
-          appBar: AppBar(title: const Text(appbarTitle)),
-          body: pokemons.when(
+      home: Scaffold(
+        appBar: AppBar(title: const Text(appbarTitle)),
+        body: Builder(
+          builder: (BuildContext context) {
+            return pokemons.when(
               (data) => GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                    itemCount: data.length,
-                    itemBuilder: (_, index) {
-                      final pokemon = data[index];
-                      return PokemonCard(pokemon: pokemon);
-                    },
-                  ),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                itemCount: data.length,
+                itemBuilder: (_, index) {
+                  final pokemon = data[index];
+                  return PokemonCard(pokemon: pokemon);
+                },
+              ),
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (errorMessage) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  _showErrorMessageSnackbar(errorMessage);
-                });
+                WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackbar(context, errorMessage));
                 return const Center(child: Text(noPokemonAvailable));
-              }),
-        ));
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  void _showErrorMessageSnackbar(BuildContext context, String? errorMessage) {
+    final SnackBar snackBar = SnackBar(
+      content: Text(errorMessage ?? emptyString),
+      duration: const Duration(seconds: 5),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
