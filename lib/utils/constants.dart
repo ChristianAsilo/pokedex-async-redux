@@ -6,3 +6,7 @@ const pokemonName = 'charizard';
 //Pokemon Overview Page
 const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/[index].png';
 const indexKey = '[index]';
+const appbarTitle = 'Pokedex';
+
+//Pokemon Overview VM
+const errorMessage = 'Something went wrong!';
