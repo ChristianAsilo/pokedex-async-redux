@@ -14,26 +14,34 @@ class PokemonOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showErrorMessageSnackbar(String? errorMessage) {
+      final SnackBar snackBar = SnackBar(
+        content: Text(errorMessage!),
+        duration: const Duration(seconds: 5),
+      );
+      key.currentState?.showSnackBar(snackBar);
+    }
+
     return MaterialApp(
-      home: pokemons.when(
-        (data) => Scaffold(
+        scaffoldMessengerKey: key,
+        home: Scaffold(
           appBar: AppBar(title: const Text(appbarTitle)),
-          body: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemCount: data.length,
-            itemBuilder: (_, index) {
-              final pokemon = data[index];
-              return PokemonCard(
-                pokemon: pokemon,
-              );
-            },
-          ),
-        ),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (errorMessage) => AlertDialog(
-          content: Text(errorMessage!),
-        ),
-      ),
-    );
+          body: pokemons.when(
+              (data) => GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                    itemCount: data.length,
+                    itemBuilder: (_, index) {
+                      final pokemon = data[index];
+                      return PokemonCard(pokemon: pokemon);
+                    },
+                  ),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (errorMessage) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  _showErrorMessageSnackbar(errorMessage);
+                });
+                return const Center(child: Text(noPokemonAvailable));
+              }),
+        ));
   }
 }
