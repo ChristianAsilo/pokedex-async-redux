@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_async_redux/api/model/pokemon.dart';
+import 'package:pokedex_async_redux/features/pokemon_details/pokemon_details_connector.dart';
 import 'package:pokedex_async_redux/utils/async.dart';
 import 'package:pokedex_async_redux/utils/constants.dart';
 import 'package:pokedex_async_redux/widget/pokemon_card.dart';
@@ -22,19 +23,27 @@ class PokemonOverviewPage extends StatelessWidget {
           itemCount: data.length,
           itemBuilder: (_, index) {
             final pokemon = data[index];
-            return PokemonCard(pokemon: pokemon);
+            return GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PokemonDetailsConnector(selectedPokemon: pokemon.name),
+                ),
+              ),
+              child: PokemonCard(pokemon: pokemon),
+            );
           },
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (errorMessage) {
-          WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackbar(context, errorMessage));
+          WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackBar(context, errorMessage));
           return const Center(child: Text(noPokemonAvailable));
         },
       ),
     );
   }
 
-  void _showErrorMessageSnackbar(BuildContext context, String? errorMessage) {
+  void _showErrorMessageSnackBar(BuildContext context, String? errorMessage) {
     final SnackBar snackBar = SnackBar(
       content: Text(errorMessage ?? emptyString),
       duration: const Duration(seconds: 5),
