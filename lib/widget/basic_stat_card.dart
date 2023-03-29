@@ -19,38 +19,38 @@ class BasicStatCard extends StatelessWidget {
     return Card(
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(weightText, style: TextStyle(fontSize: 16)),
+                const Text(weightText, style: TextStyle(fontSize: 16.0)),
                 Text(
-                  '${weight / 10} $kgText',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  '$weight  $kgText',
+                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            const VerticalSpace(space: 10),
+            const VerticalSpace(height: 10.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(heightText, style: TextStyle(fontSize: 16)),
+                const Text(heightText, style: TextStyle(fontSize: 16.0)),
                 Text(
-                  '${height / 10} $metersText',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  '$height $metersText',
+                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            const VerticalSpace(space: 10),
+            const VerticalSpace(height: 10.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(baseExperienceText, style: TextStyle(fontSize: 16)),
+                const Text(baseExperienceText, style: TextStyle(fontSize: 16.0)),
                 Text(
                   '$baseExperience',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ],
             ),

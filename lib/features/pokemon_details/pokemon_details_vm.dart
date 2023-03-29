@@ -12,6 +12,7 @@ class PokemonDetailsVmFactory extends VmFactory<AppState, PokemonDetailsConnecto
 
   Async<PokemonDetails> _pokemonDetails() {
     if (state.wait.isWaitingFor(GetPokemonDetailsAction.key)) return const Async.loading();
+
     if (state.pokemonDetails == null) return const Async.error(errorMessage);
     return Async(state.pokemonDetails!);
   }

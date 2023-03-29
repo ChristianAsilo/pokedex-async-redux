@@ -23,13 +23,9 @@ const pokemonDetailsText = 'Pokemon Details';
 const weightText = 'Weight:';
 const kgText = 'kg';
 const heightText = 'Height:';
-const metersText = 'meters';
+const metersText = 'cm';
 const baseExperienceText = 'Base Experience:';
 const basicStatsText = 'Basic Stats';
 const statsText = 'Stats';
 const abilitiesText = 'Abilities';
 const movesText = 'Moves';
-
-const double defaultTwenty = 20;
-const double defaultTen = 10;
-const double defaultSixTeen = 16;
