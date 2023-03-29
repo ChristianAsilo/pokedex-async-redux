@@ -27,14 +27,14 @@ class PokemonOverviewPage extends StatelessWidget {
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (errorMessage) {
-          WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackbar(context, errorMessage));
+          WidgetsBinding.instance.addPostFrameCallback((_) => _showErrorMessageSnackBar(context, errorMessage));
           return const Center(child: Text(noPokemonAvailable));
         },
       ),
     );
   }
 
-  void _showErrorMessageSnackbar(BuildContext context, String? errorMessage) {
+  void _showErrorMessageSnackBar(BuildContext context, String? errorMessage) {
     final SnackBar snackBar = SnackBar(
       content: Text(errorMessage ?? emptyString),
       duration: const Duration(seconds: 5),
