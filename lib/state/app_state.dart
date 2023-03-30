@@ -13,6 +13,7 @@ class AppState with _$AppState {
     //TODO: this will be removed
     @Default('') String sample,
     @Default(<Pokemon>[]) List<Pokemon> pokemons,
+    @Default(<Pokemon>[]) List<Pokemon> searchedPokemons,
     @Default(null) PokemonDetails? pokemonDetails,
 
     // ignored by state

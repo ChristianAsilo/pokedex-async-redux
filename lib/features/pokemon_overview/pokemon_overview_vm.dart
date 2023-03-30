@@ -8,7 +8,12 @@ import 'package:pokedex_async_redux/utils/constants.dart';
 
 class PokemonOverviewVmFactory extends VmFactory<AppState, PokemonOverviewConnector> {
   @override
-  Vm fromStore() => PokemonOverviewVm(pokemons: _pokemons());
+  Vm fromStore() => PokemonOverviewVm(
+        pokemons: _pokemons(),
+        searchedPokemons: state.searchedPokemons,
+        getSearchedPokemon: (searchText) => getSearchedPokemon(searchText),
+        clearSearchedPokemons: () => clearSearchedPokemons,
+      );
 
   Async<List<Pokemon>> _pokemons() {
     if (state.wait.isWaitingFor(GetPokemonsAction.key)) return const Async.loading();
@@ -16,12 +21,22 @@ class PokemonOverviewVmFactory extends VmFactory<AppState, PokemonOverviewConnec
 
     return Async(state.pokemons);
   }
+
+  void getSearchedPokemon(String searchText) => dispatchSync(SearchPokemonsAction(searchText: searchText));
+
+  void clearSearchedPokemons() => dispatchSync(ClearSearchedPokemonsAction());
 }
 
 class PokemonOverviewVm extends Vm {
   PokemonOverviewVm({
+    required this.searchedPokemons,
+    required this.getSearchedPokemon,
     required this.pokemons,
-  }) : super(equals: [pokemons]);
+    required this.clearSearchedPokemons,
+  }) : super(equals: [pokemons, searchedPokemons]);
 
   final Async<List<Pokemon>> pokemons;
+  final List<Pokemon> searchedPokemons;
+  final Function(String) getSearchedPokemon;
+  final Function() clearSearchedPokemons;
 }
