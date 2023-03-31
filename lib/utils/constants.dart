@@ -29,3 +29,7 @@ const basicStatsText = 'Basic Stats';
 const statsText = 'Stats';
 const abilitiesText = 'Abilities';
 const movesText = 'Moves';
+
+//Search Pokemon
+const searchPokemonText = 'Search Pokemon';
+const noSearchResultText = 'No search results found!';
